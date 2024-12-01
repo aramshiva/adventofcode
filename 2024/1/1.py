@@ -1,4 +1,4 @@
-with open('/Users/aram/Documents/Code/adventofcode/1.txt', 'r') as file:
+with open('input.txt', 'r') as file:
     lines = file.readlines()
 n = 0
 for line in range(len(lines)):
