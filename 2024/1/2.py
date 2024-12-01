@@ -1,6 +1,6 @@
 from collections import Counter
 
-with open('/Users/aram/Documents/Code/adventofcode/1/1.txt', 'r') as file:
+with open('input.txt', 'r') as file:
     lines = file.readlines()
 
 left_numbers = []
