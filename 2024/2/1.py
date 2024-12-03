@@ -5,40 +5,42 @@ reports = []
 for line in lines:
     reports.append(line.strip().split())
     
-def is_safe(r):
-    e = []
-    for number in r:
-        e.append(int(number))
-    print(f"report: {e}")
-    sorte = sorted(e)
-    unsorte = sorted(e, reverse=True)
-    print(f"ascending: {sorte}")
-    print(f"descending: {unsorte}")
-    if sorte != e: 
-        return False
-    elif unsorte != e: 
-        return False
-    else:
-        # return False
-        for i in range(len(e) - 1):
-            if abs(e[i] - e[i + 1]) < 1 or abs(e[i] - e[i + 1]) > 3:
-                return False
-        return True
-        # return True
-            # if abs(num - e[num_index + 1]) < 4:
-            #     return True
-    #     return True
-    #     # last_num = None
-    #     # for num in report:
-    #     #     num = int(num)
-    #     #     last_num = num
-    #     #     if last_num is not None:
-    #     #         print(abs(num - last_num))
-    #     #         if 0 < abs(num - last_num) < 4: last_num = num
-    #     #         else: return False
-    #     #     else:
-    #     #         last_num = num
+def is_ascending_or_descending(r):
+    sorte = sorted(r)
+    unsorte = sorted(r, reverse=True)
+    if sorte == r: return True
+    elif unsorte == r: return True
+    else: return False
 
+def is_safe(r):
+    print(f"report: {r}")
+    for position in range(len(r)):
+        num = r[position]
+        if position != len(r) - 1:
+            next_num = r[position + 1]
+            print(f"num: {num}\nnext_num: {next_num}")
+            if abs(next_num - num) >= 1:
+                if abs(next_num - num) <= 3: 
+                    pass
+                else:
+                    return False
+            else: 
+                return False
+    return True
+
+n = 0
 for report in reports:
-    if is_safe(report): print("true")
-    else: print("false")
+    e = []
+    for number in report: e.append(int(number))
+    report = e
+    if is_ascending_or_descending(report): 
+        if is_safe(report):
+            n += 1
+            print(f"{report} marked SAFE")
+        else: 
+            print(f"{report} marked UNSAFE")
+    else: 
+        print(f"{report} marked UNSAFE")
+
+print(f"size of safe reports {n}")
+    
